@@ -1,23 +1,26 @@
-import Web3 from "web3";
-import { ethers } from "ethers";
-import { toast } from "react-toastify";
+import Web3 from 'web3';
+import { ethers } from 'ethers';
+import { toast } from 'react-toastify';
 
-import configEIP2771 from "./configs/EIP2771.json";
-import configCustom_EIP712Sign from "./configs/Custom_EIP712Sign.json";
-import configCustom_PersonalSign from "./configs/Custom_PersonalSign.json";
+import configCustom_EIP712Sign from './configs/Custom_EIP712Sign.json';
+import token from './configs/Token.json';
 
-export { configEIP2771, configCustom_EIP712Sign, configCustom_PersonalSign };
+export { configCustom_EIP712Sign };
+export { token };
 
 export const getSignatureParametersWeb3 = (signature: any) => {
   const web3 = new Web3(window.ethereum as any);
   if (!web3.utils.isHexStrict(signature)) {
     throw new Error(
-      'Given value "'.concat(signature, '" is not a valid hex string.')
+      'Given value "'.concat(
+        signature,
+        '" is not a valid hex string.'
+      )
     );
   }
   const r = signature.slice(0, 66);
-  const s = "0x".concat(signature.slice(66, 130));
-  let v = "0x".concat(signature.slice(130, 132));
+  const s = '0x'.concat(signature.slice(66, 130));
+  let v = '0x'.concat(signature.slice(130, 132));
   v = web3.utils.hexToNumber(v).toString();
   if (![27, 28].includes(Number(v))) v += 27;
   return {
@@ -30,12 +33,15 @@ export const getSignatureParametersWeb3 = (signature: any) => {
 export const getSignatureParametersEthers = (signature: any) => {
   if (!ethers.utils.isHexString(signature)) {
     throw new Error(
-      'Given value "'.concat(signature, '" is not a valid hex string.')
+      'Given value "'.concat(
+        signature,
+        '" is not a valid hex string.'
+      )
     );
   }
   const r = signature.slice(0, 66);
-  const s = "0x".concat(signature.slice(66, 130));
-  let v = "0x".concat(signature.slice(130, 132));
+  const s = '0x'.concat(signature.slice(66, 130));
+  let v = '0x'.concat(signature.slice(130, 132));
   v = ethers.BigNumber.from(v).toString();
   if (![27, 28].includes(Number(v))) v += 27;
   return {
@@ -58,12 +64,15 @@ export type ExternalProvider = {
     request: { method: string; params?: Array<any> },
     callback: (error: any, response: any) => void
   ) => void;
-  request?: (request: { method: string; params?: Array<any> }) => Promise<any>;
+  request?: (request: {
+    method: string;
+    params?: Array<any>;
+  }) => Promise<any>;
 };
 
 export const showErrorMessage = (message: string) => {
   toast.error(message, {
-    position: "top-right",
+    position: 'top-right',
     autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: false,
@@ -75,7 +84,7 @@ export const showErrorMessage = (message: string) => {
 
 export const showInfoMessage = (message: string) => {
   toast.info(message, {
-    position: "top-right",
+    position: 'top-right',
     autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -87,7 +96,7 @@ export const showInfoMessage = (message: string) => {
 
 export const showSuccessMessage = (message: string) => {
   toast.success(message, {
-    position: "top-right",
+    position: 'top-right',
     autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: false,
@@ -99,8 +108,8 @@ export const showSuccessMessage = (message: string) => {
 
 export const showSuccessMessagePending = (promise: Promise<void>) => {
   toast.promise(promise, {
-    pending: "Promise is pending",
-    success: "Promise resolved 👌",
-    error: "Promise rejected 🤯",
+    pending: 'Promise is pending',
+    success: 'Promise resolved 👌',
+    error: 'Promise rejected 🤯',
   });
 };

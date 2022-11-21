@@ -1,20 +1,11 @@
 /* eslint-disable react/jsx-pascal-case */
-import React from "react";
-import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Box from "@material-ui/core/Box";
-import Web3_Custom_EIP712Sign from "./Web3_Custom_EIP712Sign";
-import Web3_Custom_PersonalSign from "./Web3_Custom_PersonalSign";
-import Web3_EIP2771_EIP712Sign from "./Web3_EIP2771_EIP712Sign";
-import Web3_EIP2771_PersonalSign from "./Web3_EIP2771_PersonalSign";
-
-import Ethers_Custom_EIP712Sign from "./Ethers_Custom_EIP712Sign";
-import Ethers_Custom_PersonalSign from "./Ethers_Custom_PersonalSign";
-import Ethers_EIP2771_EIP712Sign from "./Ethers_EIP2771_EIP712Sign";
-import Ethers_EIP2771_PersonalSign from "./Ethers_EIP2771_PersonalSign";
-// import Ethers_Forward_EIP712Sign from './Ethers_Forward_EIP712Sign';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Box from '@material-ui/core/Box';
+import Ethers_Custom_EIP712Sign from './Ethers_Custom_EIP712Sign';
 
 function TabPanel(props: any) {
   const { children, value, index, ...other } = props;
@@ -42,7 +33,7 @@ TabPanel.propTypes = {
 function a11yProps(index: any) {
   return {
     id: `vertical-tab-${index}`,
-    "aria-controls": `vertical-tabpanel-${index}`,
+    'aria-controls': `vertical-tabpanel-${index}`,
   };
 }
 
@@ -50,25 +41,25 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
-    display: "flex",
-    width: "100%",
+    display: 'flex',
+    width: '100%',
     maxWidth: 900,
-    margin: "auto",
-    height: "max-content",
-    border: "1px solid #D48158",
+    margin: 'auto',
+    height: 'max-content',
+    border: '1px solid #D48158',
     borderRadius: 25,
-    "@media (max-width:699px)": {
-      flexDirection: "column"
+    '@media (max-width:699px)': {
+      flexDirection: 'column',
     },
   },
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
     borderBottom: `1px solid ${theme.palette.divider}`,
-    padding: "30px 10px",
-    width: "30%",
-    "@media (max-width:699px)": {
-      width: "90%",
-      margin: "auto"
+    padding: '30px 10px',
+    width: '30%',
+    '@media (max-width:699px)': {
+      width: '90%',
+      margin: 'auto',
     },
   },
 }));
@@ -91,40 +82,14 @@ function App() {
         aria-label="Vertical tabs"
         className={classes.tabs}
       >
-        <Tab label="Web3 + Custom + EIP712 Sign" {...a11yProps(0)} />
-        <Tab label="Web3 + Custom + Personal Sign" {...a11yProps(1)} />
-        <Tab label="Web3 + EIP2771 + EIP712 Sign" {...a11yProps(2)} />
-        <Tab label="Web3 + EIP2771 + Personal Sign" {...a11yProps(3)} />
-        <Tab label="Ethers + Custom + EIP712 Sign" {...a11yProps(4)} />
-        <Tab label="Ethers + Custom + Personal Sign" {...a11yProps(5)} />
-        <Tab label="Ethers + EIP2771 + EIP712 Sign" {...a11yProps(6)} />
-        <Tab label="Ethers + EIP2771 + Personal Sign" {...a11yProps(7)} />
-        {/* <Tab label="Ethers + Forward + EIP712 Sign" {...a11yProps(8)} /> */}
+        <Tab
+          label="Ethers + Custom + EIP712 Sign"
+          {...a11yProps(0)}
+        />
       </Tabs>
 
       <TabPanel value={value} index={0}>
-        <Web3_Custom_EIP712Sign />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <Web3_Custom_PersonalSign />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <Web3_EIP2771_EIP712Sign />
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        <Web3_EIP2771_PersonalSign />
-      </TabPanel>
-      <TabPanel value={value} index={4}>
         <Ethers_Custom_EIP712Sign />
-      </TabPanel>
-      <TabPanel value={value} index={5}>
-        <Ethers_Custom_PersonalSign />
-      </TabPanel>
-      <TabPanel value={value} index={6}>
-        <Ethers_EIP2771_EIP712Sign />
-      </TabPanel>
-      <TabPanel value={value} index={7}>
-        <Ethers_EIP2771_PersonalSign />
       </TabPanel>
     </div>
   );

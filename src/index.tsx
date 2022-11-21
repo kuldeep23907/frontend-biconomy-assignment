@@ -1,24 +1,32 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 
 // import '@rainbow-me/rainbowkit/styles.css';
-import "@rainbow-me/rainbowkit/dist/index.css";
-import "react-toastify/dist/ReactToastify.css";
-import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
-import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
-import { publicProvider } from "wagmi/providers/public";
+import '@rainbow-me/rainbowkit/dist/index.css';
+import 'react-toastify/dist/ReactToastify.css';
+import {
+  getDefaultWallets,
+  RainbowKitProvider,
+} from '@rainbow-me/rainbowkit';
+import {
+  chain,
+  configureChains,
+  createClient,
+  WagmiConfig,
+} from 'wagmi';
+import { publicProvider } from 'wagmi/providers/public';
 
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
 const { chains, provider, webSocketProvider } = configureChains(
-  [chain.kovan, chain.polygonMumbai],
+  [chain.goerli],
   [publicProvider()]
 );
 
 const { connectors } = getDefaultWallets({
-  appName: "Gasless Playground",
+  appName: 'Gasless Playground',
   chains,
 });
 
@@ -30,7 +38,7 @@ const wagmiClient = createClient({
 });
 
 const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
+  document.getElementById('root') as HTMLElement
 );
 
 root.render(
